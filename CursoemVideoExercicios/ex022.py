@@ -1,0 +1,8 @@
+nome = str(input('Digite seu nome completo: ')).strip()
+print('\nSeu nome em Maiusculo: ',nome.upper())
+print('Seu nome em Minusculo: ',nome.lower())
+nome1 = nome.split()
+nome2 = "".join(nome1)
+n1 = len(nome2)
+print(nome2 ,'-> sem espaços tem', n1, 'letras!')
+print('O primeiro nome tem:', len(nome1[0]), 'letras!')
