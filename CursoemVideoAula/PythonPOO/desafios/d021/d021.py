@@ -26,8 +26,7 @@ class Caneta:
             print(f'A {self.cor}caneta[/] está tampada!', end='')
 
     def quebrar_linha(self, quant):
-        for c in range(quant):
-            print('\n')
+            print('\n'*quant)
 
 c1 = Caneta('azul')
 c2 = Caneta('vermelha')
