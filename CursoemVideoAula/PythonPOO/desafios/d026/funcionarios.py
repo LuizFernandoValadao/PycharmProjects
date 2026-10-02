@@ -32,7 +32,7 @@ class FuncionarioHorista(Funcionario):
     def calc_sal(self):
         self.sal_bruto = self.valor_hora * self.horas_trab
         self.salario = self.sal_bruto - (self.sal_bruto * self.inss / 100)
-        self.conteudo += f'O salário de [blue]{self.nome}[/] ([violet]FuncionarioHorista[/]) é de [green]R${self.salario:.2f}[/]'
+        self.conteudo += f'O salário de [blue]{self.nome}[/] ([violet]{self.__class__.__name__}[/]) é de [green]R${self.salario:.2f}[/]'
 
 
 class FuncionarioMensalista(Funcionario):
@@ -42,4 +42,4 @@ class FuncionarioMensalista(Funcionario):
 
     def calc_sal(self):
         self.salario = self.sal_bruto - (self.sal_bruto * self.inss / 100)
-        self.conteudo += f'O salário de [blue]{self.nome}[/] ([violet]FuncionarioMensalista[/]) é de [green]R${self.salario:.2f}[/]'
+        self.conteudo += f'O salário de [blue]{self.nome}[/] ([violet]{self.__class__.__name__}[/]) é de [green]R${self.salario:.2f}[/]'
