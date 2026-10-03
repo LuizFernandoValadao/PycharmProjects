@@ -1,31 +1,23 @@
 class Termostato:
-    def __init__(self, temperatura = 24):
-        self.__temperatura = temperatura
+    def __init__(self):
+        self.__temperatura = 24
 
     @property
     def ftemperatura(self):
-        return f'{self.__temperatura}ºC'
+        return f'{self.__temperatura}{chr(176)}C'
 
     @property
     def temperatura(self):
         return self.__temperatura
 
     @temperatura.setter
-    def temperatura(self, temperatura):
-        if temperatura <= 16:
+    def temperatura(self, valor):
+        if valor % 0.5 != 0:
+            raise ValueError(f'Temperatura de {valor}{chr(176)}C é inválida!')
+        if valor <= 16:
             self.__temperatura = 16
-        elif temperatura >= 30:
+        elif valor >= 30:
             self.__temperatura = 30
         else:
-            if temperatura % 0.5 != 0:
-                print(f'Temperatura de {temperatura}ºC é inválida')
-                '''r = temperatura % 0.5
-                if r >= 0.3:
-                    r = 0.5 - r
-                    temperatura += r
-                    self.__temperatura = temperatura
-                else:
-                    temperatura -= r
-                    self.__temperatura = temperatura'''
-            else:
-                self.__temperatura = temperatura
+            self.__temperatura = valor
+
