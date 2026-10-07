@@ -1,8 +1,9 @@
 from hashlib import sha256
 
+
 class ContaBancaria:
 
-    def __init__(self, id, nome, saldo, senha = ""):
+    def __init__(self, id: int, nome:str = None, saldo: float = 0, senha = ""):
         if senha == "" or len(senha) <= 0:
             senha = str(input('Senha: '))
 
@@ -12,13 +13,19 @@ class ContaBancaria:
         self.__hash = sha256(senha.encode("utf-8")).hexdigest()
         print(f'Conta {self._id} criada com sucesso. Saldo atual de R${self.__saldo:,.2f}')
 
+
     @property
     def nome(self):
         return self._titular
 
+
     @nome.setter
     def nome(self, nome):
-        self._titular = nome
+        if self.pede_senha():
+            self._titular = nome
+            print(f'Nome alterado para {self._titular}!')
+        else:
+            print(f'Senha incorreta, não foi possivel alterar o nome!')
 
     def depositar(self, valor):
         if valor <= 0 or not isinstance(valor, int):
@@ -27,8 +34,11 @@ class ContaBancaria:
             self.__saldo += valor
             print(f'Depósito de R${valor:,.2f} autorizado na conta {self._id}')
 
+
     def pede_senha(self) -> str:
         senha = str(input('Senha: '))
+        return self.validar_senha(senha)
+
 
     def sacar(self, valor:float, chave: str = None):
         if valor <= 0 :
@@ -36,8 +46,27 @@ class ContaBancaria:
         if valor > self.__saldo:
             print(f'Não foi possivel sacar, Valor maior que o saldo. Saldo atual de R${self.__saldo:,.2f}')
         else:
-            self.__saldo -= valor
-            print(f"Saque de R${valor:,.2f} autorizado na conta {self._id}")
+            if chave != None:
+                if self.validar_senha(chave):
+                    self.__saldo -= valor
+                    print(f"Saque de R${valor:,.2f} autorizado na conta {self._id}")
+                else:
+                    print('Senha não confere. Saque não autorizado!')
+            else:
+                if self.pede_senha():
+                    self.__saldo -= valor
+                    print(f"Saque de R${valor:,.2f} autorizado na conta {self._id}")
+                else:
+                    print('Senha não confere. Saque não autorizado!')
+
+
 
     def validar_senha(self, chave: str) -> bool:
-        pass
+        chave = sha256(chave.encode("utf-8")).hexdigest()
+        if chave == self.__hash:
+            return True
+        else:
+            return False
+
+    def __str__(self):
+        return f"A conta {self._id} de {self._titular} tem R${self.__saldo:,.2f} de saldo."

@@ -9,9 +9,13 @@ def main():
     p.depositar(500)
 
     print("Realizando saque")
-    p.sacar(200)
+    p.sacar(200, "Gafanhoto")
 
-    #inspect(p, private=True, methods=True)
+    p.nome = "Gustavo"
+
+    print(p)
+
+    inspect(p, private=True, methods=True)
 
 
 if __name__ == '__main__':
