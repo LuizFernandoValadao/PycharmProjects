@@ -3,13 +3,13 @@ from rich import print, inspect
 
 def main():
     print("Criando a conta...")
-    p = ContaBancaria(112, "Luiz", 1000, "Gafanhoto")
+    p = ContaBancaria(112, "Luiz", 1000)
 
     print("Realizando depósito")
     p.depositar(500)
 
     print("Realizando saque")
-    p.sacar(200, "Gafanhoto")
+    p.sacar(200)
 
     p.nome = "Gustavo"
 

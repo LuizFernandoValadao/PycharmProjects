@@ -1,11 +1,12 @@
 from hashlib import sha256
+from pwinput import pwinput
 
 
 class ContaBancaria:
 
     def __init__(self, id: int, nome:str = None, saldo: float = 0, senha = ""):
         if senha == "" or len(senha) <= 0:
-            senha = str(input('Senha: '))
+            senha = str(pwinput('Senha: ', mask='*'))
 
         self._id = id
         self._titular = nome
@@ -36,7 +37,7 @@ class ContaBancaria:
 
 
     def pede_senha(self) -> str:
-        senha = str(input('Senha: '))
+        senha = str(pwinput('Senha: ', mask='*'))
         return self.validar_senha(senha)
 
 
