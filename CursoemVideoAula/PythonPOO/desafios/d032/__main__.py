@@ -9,7 +9,7 @@ def main():
     p.depositar(500)
 
     print("Realizando saque")
-    p.sacar(200)
+    p.sacar(154200)
 
     p.nome = "Gustavo"
 

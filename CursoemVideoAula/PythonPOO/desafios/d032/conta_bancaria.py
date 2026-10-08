@@ -1,5 +1,7 @@
 from hashlib import sha256
 from pwinput import pwinput
+from rich import print
+from rich.panel import Panel
 
 
 class ContaBancaria:
@@ -45,20 +47,25 @@ class ContaBancaria:
         if valor <= 0 :
             raise ValueError('Valor deve ser um número positivo')
         if valor > self.__saldo:
-            print(f'Não foi possivel sacar, Valor maior que o saldo. Saldo atual de R${self.__saldo:,.2f}')
+            c = Panel.fit(f'[red]Não foi possivel sacar, Valor maior que o saldo. Saldo atual de R${self.__saldo:,.2f}[/]')
+            print(c)
         else:
             if chave != None:
                 if self.validar_senha(chave):
                     self.__saldo -= valor
-                    print(f"Saque de R${valor:,.2f} autorizado na conta {self._id}")
+                    c = Panel.fit(f"[green]Saque de R${valor:,.2f} autorizado na conta {self._id}[/]")
+                    print(c)
                 else:
-                    print('Senha não confere. Saque não autorizado!')
+                    c = Panel.fit('[red]Senha não confere. Saque não autorizado![/]')
+                    print(c)
             else:
                 if self.pede_senha():
                     self.__saldo -= valor
-                    print(f"Saque de R${valor:,.2f} autorizado na conta {self._id}")
+                    c = Panel.fit(f"[green]Saque de R${valor:,.2f} autorizado na conta {self._id}[/]")
+                    print(c)
                 else:
-                    print('Senha não confere. Saque não autorizado!')
+                    c = Panel.fit('[red]Senha não confere. Saque não autorizado![/]')
+                    print(c)
 
 
 
