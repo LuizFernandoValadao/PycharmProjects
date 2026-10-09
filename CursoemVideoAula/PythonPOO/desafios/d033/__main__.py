@@ -3,7 +3,7 @@ from classd033 import *
 
 def main():
     al = Aluno('Maria', 2000, "UI")
-    al.nascimento = 2023
+    al.idade = 30
     inspect(al, private=True, methods=True)
 
 
