@@ -9,6 +9,5 @@ def main():
 
     inspect(a, private=True, methods=True)
 
-
 if __name__ == '__main__':
     main()
