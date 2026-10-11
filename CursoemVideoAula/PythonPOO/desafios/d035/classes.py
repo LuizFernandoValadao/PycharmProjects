@@ -26,7 +26,7 @@ class Arquivo(ABC):
 
     @property
     def nome_completo(self):
-        return f'"{self.nome}.{self.extensao}" ({self.tamanho}bytes)'
+        return f'"{self.nome}.{self.extensao}" ({self.tamanho/1000000}Mb)'
 
 
 class PDF(Arquivo):
@@ -35,8 +35,7 @@ class PDF(Arquivo):
         super().__init__(nome, 'pdf',tam)
 
     def abrir(self):
-        print(f'Abrindo o arquivo {self.nome_completo} no Microsoft Word')
-
+        print(f'Abrindo o arquivo {self.nome_completo} no Adobe Reader')
 
 
 class DOC(Arquivo):
@@ -45,4 +44,8 @@ class DOC(Arquivo):
         super().__init__(nome, 'docx',tam)
 
     def abrir(self):
-        print(f'Abrindo o arquivo {self.nome_completo} no Adobe Reader')
+        print(f'Abrindo o arquivo {self.nome_completo} no Microsoft Word')
+
+
+def abrir_arquivo(arquivo):
+    arquivo.abrir()
