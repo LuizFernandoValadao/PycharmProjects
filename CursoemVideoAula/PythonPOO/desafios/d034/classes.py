@@ -22,43 +22,24 @@ class Funcionario(ABC):
     def calcular_bonus(self):
         pass
 
+    def __str__(self):
+        return f'{self.nome} ganha R${self.salario:,.2f} e por ser {self.__class__.__name__} o Bônus será de {self.calcular_bonus():,.2f}'
 
 
 class Gerente(Funcionario):
-    bonus = 15
-
-    def __init__(self, nome: str|None, salario: float):
-        super().__init__(nome, salario)
 
     def calcular_bonus(self):
-        return (Gerente.bonus * self.salario / 100)
-
-    def __str__(self):
-        return f'{self.nome} ganha R${self.salario:,.2f} e por ser {self.__class__.__name__} o Bônus será de {self.calcular_bonus()}'
+        return 0.15 * self.salario
 
 
 class Designer(Funcionario):
-    bonus = 8
-
-    def __init__(self, nome: str|None, salario: float):
-        super().__init__(nome, salario)
 
     def calcular_bonus(self):
-        return (Designer.bonus * self.salario / 100)
-
-    def __str__(self):
-        return f'{self.nome} ganha R${self.salario:,.2f} e por ser {self.__class__.__name__} o Bônus será de {self.calcular_bonus()}'
+        return 0.08 * self.salario
 
 
 class Desenvolvedor(Funcionario):
-    bonus = 10
-
-    def __init__(self, nome: str|None, salario: float):
-        super().__init__(nome, salario)
 
     def calcular_bonus(self):
-        return (Desenvolvedor.bonus * self.salario / 100)
-
-    def __str__(self):
-        return f'{self.nome} ganha R${self.salario:,.2f} e por ser {self.__class__.__name__} o Bônus será de {self.calcular_bonus()}'
+        return 0.1 * self.salario
 
